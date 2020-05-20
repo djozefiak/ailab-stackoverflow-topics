@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+ipykernel = "*"
+pylint = "*"
+
+[packages]
+lxml = "*"
+tqdm = "*"
+pymongo = "*"
+pandas = "*"
+seaborn = "*"
+matplotlib = "*"
+
+[requires]
+python_version = "3.7"

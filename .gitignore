@@ -1,0 +1,31 @@
+## Python ##
+# Byte-compiled / optimized / DLL-files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# pipenv
+# Pipfile.lock
+
+## Jupyter Notebooks ##
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+## Visual Studio Code ##
+.vscode/
+# .vscode/*
+# !.vscode/extensions.json
+# !.vscode/launch.json
+# !.vscode/settings.json
+# !.vscode/tasks.json
+
+## Stack exchange data dump
+stack_exchange_data_dump/
+
+## Distribution / packaging / backups ##
+output/lists/*
+output/plots/*
+!output/*/README.md
