@@ -14,14 +14,14 @@ class Quarter:
 	def make_quarters(startYear, endYear):
 		quarters = []
 		for y in range(startYear, endYear):
-			for q in range(1, 5):
-				endMonth = 3 * q
-				startMonth = endMonth - 2
-				endDay = 31
-				if endMonth == 6 or endMonth == 9:
-					endDay = 30
+			for q in [1, 2, 3, 4]:
+				startMonth = 3 * q - 2
 				start = dt.datetime(y, startMonth, 1)
-				end = dt.datetime(y, endMonth, endDay)
+				if startMonth == 10:
+					end = dt.datetime(y + 1, 1, 1)
+				else:
+					endMonth = startMonth + 3
+					end = dt.datetime(y, endMonth, 1)
 				quarter = Quarter(y, q, start, end)
 				quarters.append(quarter)
 		return quarters
