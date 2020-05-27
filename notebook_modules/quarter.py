@@ -11,17 +11,20 @@ class Quarter:
 		return f"{self.year}-Q{self.number}"
 
 	@staticmethod
+	def make_quarter(year, quarter):
+		startMonth = 3 * quarter - 2
+		start = dt.datetime(year, startMonth, 1)
+		if startMonth == 10:
+			end = dt.datetime(year + 1, 1, 1)
+		else:
+			endMonth = startMonth + 3
+			end = dt.datetime(year, endMonth, 1)
+		return Quarter(year, quarter, start, end)
+
+	@staticmethod
 	def make_quarters(startYear, endYear):
 		quarters = []
 		for y in range(startYear, endYear):
 			for q in [1, 2, 3, 4]:
-				startMonth = 3 * q - 2
-				start = dt.datetime(y, startMonth, 1)
-				if startMonth == 10:
-					end = dt.datetime(y + 1, 1, 1)
-				else:
-					endMonth = startMonth + 3
-					end = dt.datetime(y, endMonth, 1)
-				quarter = Quarter(y, q, start, end)
-				quarters.append(quarter)
+				quarters.append(Quarter.make_quarter(y, q))
 		return quarters

@@ -11,18 +11,21 @@ class Half:
 		return f"{self.year}-H{self.number}"
 
 	@staticmethod
+	def make_halve(year, half):
+		startMonth = 6 * half - 5
+		start = dt.datetime(year, startMonth, 1)
+		if startMonth == 7:
+			end = dt.datetime(year + 1, 1, 1)
+		else:
+			endMonth = startMonth + 6
+			end = dt.datetime(year, endMonth, 1)
+		return Half(year, half, start, end)
+
+	@staticmethod
 	def make_halves(startYear, endYear):
 		halves = []
 		for y in range(startYear, endYear):
 			for h in [1, 2]:
-				startMonth = 6 * h - 5
-				start = dt.datetime(y, startMonth, 1)
-				if startMonth == 7:
-					end = dt.datetime(y + 1, 1, 1)
-				else:
-					endMonth = startMonth + 6
-					end = dt.datetime(y, endMonth, 1)
-				half = Half(y, h, start, end)
-				halves.append(half)
+				halves.append(Half.make_halve(y, h))
 		return halves
 
