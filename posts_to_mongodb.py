@@ -1,10 +1,10 @@
+from itertools import islice
 from lxml import etree as et
 from tqdm import tqdm
-import multiprocessing as mp
 import pymongo
-import sys, signal, os
+import sys
 
-from import_modules.constants import POSTS_SIZE
+from import_modules.constants import POSTS_SIZE, CHUNK_SIZE
 from import_modules.posts import attrib_to_dict
 
 try:
@@ -22,30 +22,25 @@ posts = stackoverflow["posts"]
 
 pbar = tqdm(total=POSTS_SIZE, ascii=True, unit='items', mininterval=1)
 
-def handler(signum, frame):
-	pbar.write(f"\nStopping worker <{os.getpid()}>")
-def init_worker():
-	signal.signal(signal.SIGINT, handler)
-def update(*args):
-	pbar.update()
-
-def work(arg):
-	try:
-		posts.insert_one(attrib_to_dict(et.fromstring(arg).attrib))
-	except pymongo.errors.DuplicateKeyError:
-		#pbar.write(f"Conflict: Document with Id <{elem.attrib.get('Id')}> already exists in database!")
-		pass
+def chunks(iterable, chunksize):
+	it = iter(iterable)
+	while (chunk := tuple(islice(it, chunksize))):
+		yield chunk
 
 if __name__ == "__main__":
-	pool = mp.Pool(4, init_worker)
 	try:
-		for event, elem in et.iterparse("stack_exchange_data_dump/Posts.xml", tag="row"):
-			pool.apply_async(work, args=(et.tostring(elem),), callback=update) 
-			elem.clear()
-		pool.close()
+		for chunk in chunks(et.iterparse("stack_exchange_data_dump/Posts.xml", tag="row"), CHUNK_SIZE):
+			try:
+				elements = []
+				for _, elem in chunk:
+					elements.append(attrib_to_dict(elem.attrib))
+					elem.clear()
+				posts.insert_many(elements, ordered=False)
+			except pymongo.errors.BulkWriteError:
+				# skip element
+				pass
+			finally:
+				pbar.update(len(chunk))
 	except KeyboardInterrupt:
 		pbar.write(f"\nAborting: Imported {pbar.n} items of {pbar.total} total items.")
-		pool.terminate()
-	finally:
 		pbar.close()
-		pool.join()
