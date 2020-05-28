@@ -19,7 +19,7 @@ def make_frequency_plot(topic, name, dataframe):
 	plt.title(name)
 	plt.xticks(rotation="vertical")
 	sns.set(style="whitegrid")
-	sns.lineplot(x="tag", y=topic, sort=False, data=dataframe)
+	sns.barplot(x="tag", y=topic, data=dataframe)
 	plt.savefig(f"output/plots/{topic}-{name}.png")
 
 def make_frequency_plot_from_csv(topic, name):
