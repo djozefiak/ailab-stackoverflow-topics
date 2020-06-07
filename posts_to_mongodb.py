@@ -18,13 +18,15 @@ except pymongo.errors.ServerSelectionTimeoutError:
 stackoverflow = client["stackoverflow"]
 
 # collection
-posts = stackoverflow["posts"]
+posts = stackoverflow["posts2"]
 
 pbar = tqdm(total=POSTS_SIZE, ascii=True, unit='items', mininterval=1)
 
 def chunks(iterable, chunksize):
 	it = iter(iterable)
-	while (chunk := tuple(islice(it, chunksize))):
+	chunk = tuple(islice(it, chunksize))
+	while (chunk):
+		chunk = tuple(islice(it, chunksize))
 		yield chunk
 
 if __name__ == "__main__":
