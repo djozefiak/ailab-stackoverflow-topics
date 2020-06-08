@@ -4,12 +4,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-lxml = "*"
-tqdm = "*"
-pymongo = "*"
-pandas = "*"
-seaborn = "*"
-matplotlib = "*"
+lxml = "~=4.5"
+matplotlib = "~=3.2"
+numpy = "~=1.18"
+pandas = "~=1.0"
+pymongo = "~=3.10"
+seaborn = "~=0.10"
+tqdm = "~=4.46"
 
 [requires]
 python_version = "3.7"
