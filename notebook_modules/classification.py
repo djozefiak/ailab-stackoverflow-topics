@@ -55,6 +55,6 @@ def classify(top_current, top_next):
 	return result
 
 def split_class(dataset):
-	x = dataset.drop(["tag", "class"], axis="columns")
+	x = dataset[["frequency", "score", "answers", "comments", "favorites", "views"]]
 	y = dataset[["class"]]
 	return x, y
