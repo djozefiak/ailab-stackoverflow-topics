@@ -28,4 +28,5 @@ stack_exchange_data_dump/
 ## Distribution / packaging / backups ##
 output/lists/*
 output/plots/*
+output/models/*
 !output/*/README.md
