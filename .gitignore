@@ -26,7 +26,8 @@ __pycache__/
 stack_exchange_data_dump/
 
 ## Distribution / packaging / backups ##
+output/db/*
 output/lists/*
-output/plots/*
 output/models/*
+output/plots/*
 !output/*/README.md
