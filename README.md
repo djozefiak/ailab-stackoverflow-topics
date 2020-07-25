@@ -14,7 +14,7 @@
 
 ### Task
 
-* in this work, we study and identify decaying tags
+* in this work, we aim to study and identify decaying tags
   * that are fading away from user interest
   * that have no or less potential to get answers for its questions
 * this can be a good guideline for question askers
