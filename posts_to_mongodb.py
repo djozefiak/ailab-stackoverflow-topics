@@ -18,7 +18,7 @@ except pymongo.errors.ServerSelectionTimeoutError:
 stackoverflow = client["stackoverflow"]
 
 # collection
-posts = stackoverflow["posts2"]
+posts = stackoverflow["posts"]
 
 pbar = tqdm(total=POSTS_SIZE, ascii=True, unit='items', mininterval=1)
 
