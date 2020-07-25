@@ -28,6 +28,20 @@
 
 To import the data set and run the analysis scripts afterwards, [Python 3.7.8](https://www.python.org/downloads/release/python-378/) or newer is required. Used packages and libraries are defined in the `Pipfile`. A portable installation (zip-package) of [MongoDB 4.2.8](https://www.mongodb.com/try/download/community) or newer is recommended, but any kind of installation should work. The scripts for importing the data set expect the database to be running without authentication enabled. If you decide to use any other form of installation, you need to adjust the connection parameters accordingly.
 
+```
+project_root/mongodb/
+  - start.cmd
+  - start.sh
+  - bin/
+    - mongo.exe
+    - mongod.exe
+    - ...
+  - config/
+    - mongod.conf
+  - data/
+    - db/
+```
+
 The data set can be downloaded from [Stack Exchange Data Dump](https://archive.org/details/stackexchange), the archives `stackoverflow.com-Posts.7z` and `stackoverflow.com-Tags.7z` are required.
 
 After downloading, the extracted files need to be placed in the `stack_exchange_data_dump/` directory inside the project root.
