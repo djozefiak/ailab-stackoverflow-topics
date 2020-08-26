@@ -1,10 +1,10 @@
 ## Python ##
-# Byte-compiled / optimized / DLL-files
+# Byte-compiled / DLL-files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# C-Extensions
 *.so
 
 # pipenv
@@ -22,12 +22,10 @@ __pycache__/
 # !.vscode/settings.json
 # !.vscode/tasks.json
 
-## Stack exchange data dump
+## Stack Exchange Data Dump
 stack_exchange_data_dump/
 
-## Distribution / packaging / backups ##
-output/db/*
-output/lists/*
-output/models/*
-output/plots/*
-!output/*/README.md
+## Distribution / Packaging / Backups ##
+output/**/*.csv
+output/**/*.png
+!output/**/.gitkeep
