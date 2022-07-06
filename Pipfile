@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-lxml = "~=4.6"
+lxml = "~=4.9"
 matplotlib = "~=3.2"
 numpy = "~=1.18"
 pandas = "~=1.0"
